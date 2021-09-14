@@ -52,6 +52,22 @@ router.get("/players/:page/previous", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+//Mostrar comunidad
+router.get("/community", isLoggedIn, (req, res) => {
+  User.find()
+    .populate("favorites")
+    .then((users) => {
+      res.render("community", { users });
+    });
+});
+
+router.post("/community", (req, res) => {
+  console.log(req.body);
+  User.findByIdAndUpdate(req.body.id, { public: true }).then(() => {
+    res.redirect("community");
+  });
+});
+
 //Añade favoritos a mi Usuario
 router.post("/add-favorite", isLoggedIn, (req, res) => {
   console.log(req.body);
