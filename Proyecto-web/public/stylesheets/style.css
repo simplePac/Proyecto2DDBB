@@ -63,3 +63,7 @@ label {
   border: 3px solid black;
   margin-top: 50px;
 }
+
+.community-user {
+  color: white;
+}
