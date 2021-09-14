@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="profile-title">
+    <h1>Welcome {{user.username}}</h1>
+  </div>
+  <div class="row row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 my-5">
+    {{#each user.favorites}}
+      <div class="col">
+        <div class="card shadow-sm">
+          <p><b>Name: </b>{{first_name}} {{last_name}}</p>
+          <p><b>Position: </b>{{position}}</p>
+          <p><b>Conference: </b>{{team.conference}}</p>
+          <p><b>Team: </b>{{team.full_name}}</p>
+          <form action="/delete-favorite" method="POST">
+            <input type="hidden" name="id" value="{{_id}}" />
+            <button type="submit">Detele Favorite</button>
+          </form>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
