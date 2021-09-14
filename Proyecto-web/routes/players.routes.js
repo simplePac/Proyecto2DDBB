@@ -15,7 +15,7 @@ router.get("/search", (req, res) => {
     .then((player) => {
       // console.log(player.data)
       res.render("players/list", {
-        player: player.data,
+        players: player.data,
       });
     })
     .catch((err) => console.log(err));
