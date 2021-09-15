@@ -1,3 +1,3 @@
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/Proyecto-web";
+// const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/Proyecto-web";
 
-module.exports = MONGO_URI;
+// module.exports = MONGO_URI;

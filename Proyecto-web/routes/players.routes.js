@@ -115,7 +115,7 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
 
 //Vista de mi perfil
 router.get("/profile", isLoggedIn, (req, res, next) => {
-  console.log(req.user)
+  // console.log(req.user)
   User.findById(req.user._id)
     .populate("favorites")
     .then((user) => {
