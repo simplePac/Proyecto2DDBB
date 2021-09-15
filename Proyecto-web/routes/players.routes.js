@@ -68,18 +68,30 @@ router.post("/community", (req, res) => {
   });
 });
 
+//Borra de comunidad
+router.post("/no-community", (req, res) => {
+  console.log(req.body);
+  User.findByIdAndUpdate(req.body.id, { public: false }).then(() => {
+    res.redirect("community");
+  });
+});
+
 //Añade favoritos a mi Usuario
 router.post("/add-favorite", isLoggedIn, (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const query = ({ first_name, last_name, position, apiId } = req.body);
   const team = ({ conference, full_name } = req.body);
 
   const idToCheck = req.body.apiId;
 
   User.findById(req.user._id).then((user) => {
+    // console.log("REQ", req.user.favorites)
+    // console.log("USER",user.favorites)
     if (user.favorites.length < 5) {
       Player.find({ apiId: idToCheck }).then((charArray) => {
+        // console.log("AQUI VA EL CHARARRAY", charArray)
         if (charArray.length === 0) {
+          // console.log("CREA AL JUGADOR!!!")
           Player.create(query)
             .then((result) => {
               // `Added to favorites`, result
@@ -91,6 +103,7 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
             })
             .catch((err) => console.log(err));
         } else {
+          // console.log("NO CREA AL JUGADOR!!")
           User.findById(req.user._id).then((user) => {
             if (!user.favorites.includes(charArray[0]._id)) {
               User.findByIdAndUpdate(req.user._id, {
@@ -115,10 +128,11 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
 
 //Vista de mi perfil
 router.get("/profile", isLoggedIn, (req, res, next) => {
-  // console.log(req.user)
+  // console.log("AQUI REQ USER", req.user)
   User.findById(req.user._id)
     .populate("favorites")
     .then((user) => {
+      // console.log("AQUI EL USUARIO", user)
       res.render("profile", { user: user });
     });
 });

@@ -67,3 +67,31 @@ label {
 .community-user {
   color: white;
 }
+
+.profile-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-form2 {
+  margin-right: 10px;
+}
+
+.profile-form1 {
+  margin-left: 10px;
+}
+
+.warning {
+  width: 700px;
+  color: white;
+  background-color: rgb(189, 57, 57);
+}
+
+.profile-advice {
+  background-color: rgb(189, 57, 57);
+  width: 250px;
+  font-size: 20px;
+  color: white;
+}

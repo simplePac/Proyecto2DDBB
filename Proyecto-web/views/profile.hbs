@@ -1,3 +1,6 @@
+<div class="profile-advice">
+  <p>You can only pick 5 players</p>
+</div>
 <div class="container">
   <div class="profile-title">
     <h1>Welcome {{user.username}}</h1>
@@ -18,8 +21,14 @@
       </div>
     {{/each}}
   </div>
-  <form action="/community" method="POST">
-    <input type="hidden" name="id" value="{{user._id}}" />
-    <button type="submit">Share</button>
-  </form>
+  <div class="profile-form">
+    <form class="profile-form2" action="/no-community" method="POST">
+      <input type="hidden" name="id" value="{{user._id}}" />
+      <button type="submit">Stop Sharing</button>
+    </form>
+    <form class="profile-form1" action="/community" method="POST">
+      <input type="hidden" name="id" value="{{user._id}}" />
+      <button type="submit">Share</button>
+    </form>
+  </div>
 </div>
